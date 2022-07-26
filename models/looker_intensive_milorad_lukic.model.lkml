@@ -12,6 +12,7 @@ persist_with: looker_intensive_milorad_lukic_default_datagroup
 
 explore: f_lineitems {
   label: "Order Analysis"
+  view_label: "Orders"
   join: d_customer {
     view_label: "Customers"
     type: left_outer
