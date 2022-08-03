@@ -37,6 +37,14 @@ view: d_supplier {
     sql: ${TABLE}."S_SUPPKEY" ;;
   }
 
+  dimension: SupplierByAccountBalance {
+    label: "Cohort of suppliers according to Account Balance"
+    type: tier
+    sql: ${s_acctbal} ;;
+    tiers: [0, 3000, 5000, 7000]
+    style: integer
+  }
+
   measure: count {
     type: count
     drill_fields: [s_name]

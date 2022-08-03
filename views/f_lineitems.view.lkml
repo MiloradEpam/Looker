@@ -142,4 +142,82 @@ view: f_lineitems {
     sql: ${l_totalprice} ;;
     value_format_name: usd
   }
+  measure: TotalAirSales {
+    label: "Total Air Sales"
+    description: "Total sales of items shipped by air in USD"
+    type: sum
+    sql: ${l_totalprice} ;;
+    filters: [l_shipmode: "AIR"]
+    value_format_name: usd
+  }
+  measure: SalesFromRussia {
+    label: "Total Russia Sales"
+    description: "Total sales by customers from Russia"
+    type: sum
+    sql: ${l_totalprice} ;;
+    filters: [d_customer.c_nation: "RUSSIA"]
+    value_format_name: usd
+  }
+  measure: TotalGrossRevenue {
+    label: "Total Gross Revenue"
+    description: "Total price of completed sales in USD"
+    type: sum
+    sql: ${l_extendedprice} ;;
+    filters: [l_orderstatus: "F"]
+    value_format_name: usd
+  }
+  measure: TotalCost {
+    label: "Total Cost"
+    description: "Missing"
+    type: sum
+    sql: ${l_supplycost}  ;;
+    value_format_name: usd
+  }
+  measure: TotalGrossMarginAmount {
+    label: "Total Gross Margin"
+    type: number
+    sql: ${TotalGrossRevenue}-${TotalCost} ;;
+    value_format_name: usd
+  }
+  measure: GrossMarginPercentage {
+    label: "Gross Margin %"
+    type: number
+    sql: ${TotalGrossMarginAmount}/${TotalGrossRevenue} ;;
+    value_format_name: percent_1
+  }
+  measure: NumberOfItemsReturned {
+    label: "Items Returned"
+    description: "Number of items that were returned by dissatisfied customers"
+    type: sum
+    sql: ${l_quantity} ;;
+    filters: [l_returnflag: "R"]
+  }
+  measure: TotalNumberOfItemsSold {
+    label: "Items Sold"
+    description: "Number of items that were sold"
+    type: sum
+    sql: ${l_quantity} ;;
+    filters: [l_orderstatus: "F"]
+  }
+  measure: ItemReturnRate {
+    label: "Return %"
+    description: "Number Of Items Returned / Total Number Of Items Sold"
+    type: number
+    sql: ${NumberOfItemsReturned}/${TotalNumberOfItemsSold} ;;
+    value_format_name: percent_1
+  }
+  measure: CustomerCount {
+    label: "Customer Count"
+    description: "Total Number of Distinct Customers"
+    type: count_distinct
+    sql: ${l_custkey} ;;
+
+  }
+  measure: AverageSpendPerCustomer {
+    label: "Average Spend per Customer"
+    description: "Total Sale Price / Total Number of Customers"
+    type: number
+    sql: ${TotalSalePrice}/nullif(${CustomerCount},0) ;;
+  }
+
 }

@@ -41,4 +41,5 @@ view: d_customer {
     type: count
     drill_fields: [c_name]
   }
+
 }
