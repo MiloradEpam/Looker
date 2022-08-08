@@ -182,7 +182,7 @@ view: f_lineitems {
   measure: GrossMarginPercentage {
     label: "Gross Margin %"
     type: number
-    sql: ${TotalGrossMarginAmount}/${TotalGrossRevenue} ;;
+    sql: ${TotalGrossMarginAmount}/nullif(${TotalGrossRevenue},0) ;;
     value_format_name: percent_1
   }
   measure: NumberOfItemsReturned {
@@ -203,7 +203,7 @@ view: f_lineitems {
     label: "Return %"
     description: "Number Of Items Returned / Total Number Of Items Sold"
     type: number
-    sql: ${NumberOfItemsReturned}/${TotalNumberOfItemsSold} ;;
+    sql: ${NumberOfItemsReturned}/nullif(${TotalNumberOfItemsSold},0) ;;
     value_format_name: percent_1
   }
   measure: CustomerCount {
@@ -217,7 +217,7 @@ view: f_lineitems {
     label: "Average Spend per Customer"
     description: "Total Sale Price / Total Number of Customers"
     type: number
-    sql: ${TotalSalePrice}/nullif(${CustomerCount},0) ;;
+    sql: ${TotalSalePrice}/${CustomerCount} ;;
   }
 
 }
