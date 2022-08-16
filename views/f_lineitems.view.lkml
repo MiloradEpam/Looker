@@ -178,6 +178,10 @@ view: f_lineitems {
     type: number
     sql: ${TotalGrossRevenue}-${TotalCost} ;;
     value_format_name: usd
+    link: {
+      label: "Total Gross Margin details"
+      url: "{{DrillDown}}"
+    }
   }
   measure: GrossMarginPercentage {
     label: "Gross Margin %"
@@ -218,6 +222,12 @@ view: f_lineitems {
     description: "Total Sale Price / Total Number of Customers"
     type: number
     sql: ${TotalSalePrice}/${CustomerCount} ;;
+  }
+  measure: DrillDown {
+    hidden: yes
+    type: sum
+    sql: 0 ;;
+    drill_fields: [d_supplier.SupplierByAccountBalance,d_supplier.s_region, l_shipmode, TotalGrossRevenue, TotalGrossMarginAmount]
   }
 
 }
