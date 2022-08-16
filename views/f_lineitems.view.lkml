@@ -178,10 +178,7 @@ view: f_lineitems {
     type: number
     sql: ${TotalGrossRevenue}-${TotalCost} ;;
     value_format_name: usd
-    link: {
-      label: "Total Gross Margin details"
-      url: "{{DrillDown}}"
-    }
+    drill_fields: [d_supplier.s_region, d_supplier.SupplierByAccountBalance, l_shipmode, TotalGrossRevenue, TotalGrossMarginAmount]
   }
   measure: GrossMarginPercentage {
     label: "Gross Margin %"
