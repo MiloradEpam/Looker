@@ -162,7 +162,7 @@ view: f_lineitems {
     label: "Total Gross Revenue"
     description: "Total price of completed sales in USD"
     type: sum
-    sql: ${l_extendedprice} ;;
+    sql: ${l_totalprice} ;;
     filters: [l_orderstatus: "F"]
     value_format_name: usd
   }
