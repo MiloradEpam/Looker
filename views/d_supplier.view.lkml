@@ -15,6 +15,7 @@ view: d_supplier {
   dimension: s_name {
     type: string
     sql: ${TABLE}."S_NAME" ;;
+    drill_fields: [f_lineitems.TotalGrossRevenue, f_lineitems.TotalCost, f_lineitems.TotalGrossMarginAmount, f_lineitems.GrossMarginPercentage]
   }
 
   dimension: s_nation {
