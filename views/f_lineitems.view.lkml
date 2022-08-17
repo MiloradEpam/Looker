@@ -122,10 +122,11 @@ view: f_lineitems {
     drill_fields: []
   }
   measure: TotalSalePrice{
-    label: "Total Sale Price"
+    label: "Total Sales"
     description: "Sum of Sales in USD"
     type: sum
     sql: ${l_totalprice}  ;;
+    drill_fields: [l_orderkey, l_orderpriority, l_orderstatus,]
     value_format_name: usd
   }
   measure: AverageSalePrice {
@@ -220,11 +221,6 @@ view: f_lineitems {
     type: number
     sql: ${TotalSalePrice}/${CustomerCount} ;;
   }
-  measure: DrillDown {
-    hidden: yes
-    type: sum
-    sql: 0 ;;
-    drill_fields: [d_supplier.SupplierByAccountBalance,d_supplier.s_region, l_shipmode, TotalGrossRevenue, TotalGrossMarginAmount]
-  }
+
 
 }
