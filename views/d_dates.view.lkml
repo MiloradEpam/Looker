@@ -10,7 +10,9 @@ view: d_dates {
       week,
       month,
       quarter,
-      year
+      year,
+      day_of_month,
+      month_name
     ]
     convert_tz: no
     datatype: date
