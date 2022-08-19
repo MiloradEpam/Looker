@@ -16,6 +16,11 @@ view: d_supplier {
     type: string
     sql: ${TABLE}."S_NAME" ;;
     drill_fields: [f_lineitems.TotalGrossRevenue, f_lineitems.TotalCost, f_lineitems.TotalGrossMarginAmount, f_lineitems.GrossMarginPercentage]
+    link: {
+      label: "Click to Google search supplier"
+      url: "http://www.google.com/search?q={{ value }}"
+    }
+
   }
 
   dimension: s_nation {
